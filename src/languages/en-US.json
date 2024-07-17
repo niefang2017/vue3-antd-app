@@ -1,0 +1,50 @@
+{
+  "name": "nief",
+  "menu": {
+    "dashboard": "Dashboard",
+    "dashboard:analysis": "Analysis",
+    "dashboard:monitor": "Monitor",
+    "idiom": "Idiom Management",
+    "idiom:list": "Idiom List",
+    "idiom:detail": "Idiom Detail",
+    "qimeng": "Enlighten Management",
+    "qimeng:list": "Enlighten List",
+    "qimeng:duilian": "Rhythm List",
+    "gushi": "Poetry Management",
+    "gushi:list": "Poetry List",
+    "gushi:detail": "Poetry Management",
+    "gushi:author": "author",
+    "editor": "Editor",
+    "login": "Login"
+  },
+  "header": {
+    "light": "Light",
+    "dark": "Dark",
+    "logout": "Logout"
+  },
+  "editor": {
+    "menu": {
+      "text": "text",
+      "image": "image",
+      "btn": "button",
+      "estate": "estate",
+      "formcom": "formcom",
+      "interact": "interact",
+      "marketing": "marketing"
+    },
+    "toolbar": {
+      "undo": "undo",
+      "redo": "redo",
+      "zoomout": "zoomout",
+      "zoomin": "zoomin",
+      "poster": "poster",
+      "preview": "preview"
+    }
+  },
+  "login": {
+    "userName": "username",
+    "password": "password",
+    "message": "Please input your",
+    "btn": "Log in"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "name": "聂芳",
+  "menu": {
+    "dashboard": "Dashboard",
+    "dashboard:analysis": "分析页",
+    "dashboard:monitor": "监控页",
+    "idiom": "成语管理",
+    "idiom:list": "成语列表",
+    "idiom:detail": "成语详情",
+    "qimeng": "启蒙管理",
+    "qimeng:list": "启蒙列表",
+    "qimeng:duilian": "韵律列表",
+    "gushi": "诗词管理",
+    "gushi:list": "诗词列表",
+    "gushi:detail": "诗词详情",
+    "gushi:author": "作者",
+    "editor": "编辑器",
+    "login": "登录"
+  },
+  "header": {
+    "light": "浅色",
+    "dark": "深色",
+    "logout": "退出登录"
+  },
+  "editor": {
+    "menu": {
+      "text": "文本",
+      "image": "图片",
+      "btn": "按钮",
+      "estate": "楼盘",
+      "formcom": "表单",
+      "interact": "互动",
+      "marketing": "营销"
+    },
+    "toolbar": {
+      "undo": "撤销",
+      "redo": "恢复",
+      "zoomout": "缩小",
+      "zoomin": "放大",
+      "poster": "海报",
+      "preview": "预览"
+    }
+  },
+  "login": {
+    "userName": "用户名",
+    "password": "密码",
+    "message": "请输入你的",
+    "btn": "登录"
+  }
+}

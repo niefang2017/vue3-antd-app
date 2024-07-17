@@ -1,0 +1,63 @@
+{
+  "name": "vue3-antd-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:unit": "vitest",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "format": "prettier --write src/",
+    "lint:lint-staged": "lint-staged",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
+    "ant-design-vue": "4.x",
+    "dayjs": "^1.11.11",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.29",
+    "vue-i18n": "^9.13.1",
+    "vue-router": "^4.3.3"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.8.0",
+    "@unocss/preset-icons": "^0.61.5",
+    "@unocss/preset-uno": "^0.61.5",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vitejs/plugin-vue-jsx": "^4.0.0",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "@vue/test-utils": "^2.4.6",
+    "ant-design": "link:@iconify-json/iconify-json/ant-design",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.23.0",
+    "jsdom": "^24.1.0",
+    "less": "^4.2.0",
+    "lodash-es": "^4.17.21",
+    "mdi": "link:@iconify-json/iconify-json/mdi",
+    "pinia-plugin-persistedstate": "^3.2.1",
+    "prettier": "^3.2.5",
+    "unocss": "^0.61.5",
+    "unplugin-icons": "^0.19.0",
+    "unplugin-vue-components": "^0.27.3",
+    "vite": "^5.3.1",
+    "vite-plugin-vue-devtools": "^7.3.1",
+    "vitest": "^1.6.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue}": [
+      "prettier --write",
+      "eslint --cache --fix",
+      "git add"
+    ]
+  }
+}

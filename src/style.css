@@ -1,0 +1,198 @@
+:root {
+  --primary-color: #646cff;
+  --background-color: #edeaf1;
+  --white: #fff;
+  --black: #232324;
+  --page-background: #e8e5ec;
+  --text-color: #232324;
+  --a-color: #232324;
+  --a-hover: #646cff;
+  --h-a-active-bg: #e6f7ff;
+  --ant-primary-1: #e6f7ff;
+  --ant-primary-2: #bae7ff;
+  --ant-primary-3: #91d5ff;
+  --ant-primary-4: #69c0ff;
+  --ant-primary-5: #40a9ff;
+  --ant-primary-6: #1890ff;
+  --ant-primary-7: #096dd9;
+  --ant-primary-8: #0050b3;
+  --ant-primary-9: #003a8c;
+  --ant-primary-10: #002766;
+  --darkreader-bg--ant-primary-1: #113545;
+  --darkreader-bg--ant-primary-2: #363838;
+  --darkreader-border--ant-primary-3: #155780;
+  --nav-height-mobile: 56px;
+  --nav-height-desktop: 72px;
+  --nav-color: var(--text-color);
+  --bg-white: #f1f1f1;
+  --h-switch-br-light: rgba(60, 60, 60, 0.29);
+  --h-switch-br-h-light: #8e8e8e;
+  --h-switch-bg-light: #f1f1f1;
+  --h-switch-c-bg-light: #ffffff;
+  --h-switch-svg-light: rgba(60, 60, 60, 0.7);
+  --h-shadow-light: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --h-tag-bg-secondary: #e1e2e3;
+  --h-tag-color-secondary: #999;
+}
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: var(--a-color);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--a-hover);
+}
+
+body {
+  /* position: relative; */
+  min-height: 100vh;
+  min-width: 320px;
+  /* margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh; */
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/* button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--black);
+  background-color: var(--white);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: var(--a-hover);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+} */
+button {
+  background-color: transparent;
+  border: none;
+}
+
+html body .ant-picker .ant-picker-input > input:focus,
+html body .ant-picker .ant-picker-input > input-focused {
+  border: none;
+  box-shadow: none;
+}
+.card {
+  padding: 2em;
+}
+
+#app {
+  /* max-width: 1280px; */
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  /* padding: 2rem; */
+  /* text-align: center; */
+}
+
+.flex {
+  display: flex;
+}
+.center {
+  align-items: center;
+}
+.between {
+  justify-content: space-between;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #edeaf1;
+    --white: #fff;
+    --black: #232324;
+    --bg-f1: #f1f1f1;
+    --page-background: #e8e5ec;
+    --text-color: #232324;
+  }
+  .ant-layout {
+    background-color: transparent;
+  }
+  /* a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  } */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #221e2a;
+    --white: #232324;
+    --black: #fff;
+    --a-color: #fff;
+    --page-background: #2b2733;
+    --text-color: rgba(255, 255, 255, 0.7);
+    /* --background-color: #edeaf1; */
+  }
+  .ant-layout {
+    background-color: transparent;
+  }
+  /* a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  } */
+}
+.dark {
+  color-scheme: dark;
+  --black: #fff;
+  --background-color: #221e2a;
+  --a-color: #fff;
+  --nav-color: rgba(255, 255, 255, 0.7);
+  --h-switch-br-light: rgba(255, 255, 255, 0.29);
+  --h-switch-bg-light: #2f2f2f;
+  --h-switch-c-bg-light: #1a1a1a;
+  --h-switch-svg-light: rgba(255, 255, 255, 0.7);
+  --h-shadow-light: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --h-tag-bg-secondary: #2f2f2f;
+  --h-tag-color-secondary: rgba(255, 255, 255, 0.7);
+  --h-a-active-bg: #113545;
+}
+
+.theme-light {
+  color-scheme: light;
+  --background-color: #edeaf1;
+  --white: #fff;
+  --black: #232324;
+  --page-background: #e8e5ec;
+  --text-color: #232324;
+  /* color: var(--text-color); */
+}
+.ant-btn-background-ghost.ant-btn-primary {
+  background-color: transparent !important;
+}
