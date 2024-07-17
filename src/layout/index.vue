@@ -1,5 +1,13 @@
 <template>
-  <a-config-provider :locale="locale === 'en' ? enUS : zhCN">
+  <a-config-provider
+    :locale="locale === 'en' ? enUS : zhCN"
+    :theme="{
+      token: {
+        colorPrimary: theme === 'dark' ? '#5468ff' : '#646cff',
+        algorithm: theme === 'dark' ? anttheme.darkAlgorithm : anttheme.defaultAlgorithm
+      }
+    }"
+  >
     <a-layout>
       <a-layout-header
         :style="{
@@ -231,6 +239,7 @@
         <a-layout :style="{ marginLeft: state.collapsed ? '80px' : '200px' }">
           <a-layout-content>
             <!-- 内容区域 -->
+            <div class="i-mdi-alarm text-orange-400" />
             <tags v-if="route.name !== 'login'"></tags>
             <router-view v-slot="{ Component, route }">
               <keep-alive v-if="route.meta.keepAlive">
@@ -251,6 +260,7 @@ import { ref, watch, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import useStore from 'store'
+import { theme as anttheme } from 'ant-design-vue'
 import { MenuUnfoldOutlined, MenuFoldOutlined, UserOutlined } from '@ant-design/icons-vue'
 import enUS from 'ant-design-vue/es/locale/en_US'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
