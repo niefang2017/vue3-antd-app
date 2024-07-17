@@ -1,6 +1,11 @@
 # vue3-antd-app
 
 This template should help get you started developing with Vue 3 in Vite.
+node >=18
+
+```sh
+npm i -g pnpm
+```
 
 ## Recommended IDE Setup
 
