@@ -1,0 +1,3 @@
+echo "🚀 commit-msg"
+echo "npx --no-install commitlint --edit"
+npx --no-install commitlint --edit "$1"

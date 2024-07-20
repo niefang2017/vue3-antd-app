@@ -11,7 +11,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "lint:lint-staged": "lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commit": "git add . && git cz"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
@@ -25,6 +26,9 @@
     "vue-router": "^4.3.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@eslint/js": "^9.7.0",
     "@rushstack/eslint-patch": "^1.8.0",
     "@unocss/preset-icons": "^0.61.5",
     "@unocss/preset-uno": "^0.61.5",
@@ -33,8 +37,14 @@
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/test-utils": "^2.4.6",
     "ant-design": "link:@iconify-json/iconify-json/ant-design",
+    "commitizen": "^4.3.0",
+    "commitlint-config-cz": "^0.13.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^7.2.1",
     "eslint": "^8.57.0",
-    "eslint-plugin-vue": "^9.23.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-vue": "^9.27.0",
+    "globals": "^15.8.0",
     "jsdom": "^24.1.0",
     "less": "^4.2.0",
     "lodash-es": "^4.17.21",
@@ -50,7 +60,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint --config .commitlintrc.js -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
@@ -59,5 +70,20 @@
       "eslint --cache --fix",
       "git add"
     ]
+  },
+  "*.{css,less,scss}": [
+    "stylelint --config .stylelintrc.js",
+    "prettier --write"
+  ],
+  "*.{json,html,yml,md}": [
+    "prettier --write"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.cjs"
+    }
   }
 }
