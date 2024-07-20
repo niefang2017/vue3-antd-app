@@ -1,5 +1,5 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 echo "🚀 commit-msg"
 echo "npx --no-install commitlint --edit"
-npx --no-install commitlint --edit "$1"
+npx --no-install commitlint --edit $1
