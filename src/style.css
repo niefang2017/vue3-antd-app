@@ -34,7 +34,7 @@
   --h-shadow-light: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
   --h-tag-bg-secondary: #e1e2e3;
   --h-tag-color-secondary: #999;
-  --page-bg-light: #f9f9f9;
+  /* --page-bg-light: #f9f9f9; */
 }
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -66,12 +66,6 @@ body {
   /* position: relative; */
   min-height: 100vh;
   min-width: 320px;
-  /* margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh; */
-  background-color: var(--page-bg-light);
 }
 
 h1 {
@@ -159,7 +153,7 @@ html body .ant-picker .ant-picker-input > input-focused {
     --a-color: #fff;
     --page-background: #2b2733;
     --text-color: rgba(255, 255, 255, 0.7);
-    /* --background-color: #edeaf1; */
+    --background-color: #edeaf1;
   }
   .ant-layout {
     background-color: transparent;
@@ -185,6 +179,7 @@ html body .ant-picker .ant-picker-input > input-focused {
   --h-tag-bg-secondary: #2f2f2f;
   --h-tag-color-secondary: rgba(255, 255, 255, 0.7);
   --h-a-active-bg: #113545;
+  --page-bg-light: #221e2a;
 }
 
 .theme-light {
@@ -196,6 +191,18 @@ html body .ant-picker .ant-picker-input > input-focused {
   --text-color: #232324;
   /* color: var(--text-color); */
 }
-.ant-btn-background-ghost.ant-btn-primary {
+.theme-light body {
+  color: rgba(0, 0, 0, 0.85);
+  background-color: #f0f2f5;
+}
+.dark body {
+  color: rgba(255, 255, 255, 0.85);
+  background-color: #232324;
+}
+.ant-menu-dark.ant-menu-inline .ant-menu-sub.ant-menu-inline {
+  background-color: #141414;
+}
+.ant-btn-background-ghost.ant-btn-primary,
+.ant-layout .ant-layout-footer {
   background-color: transparent !important;
 }

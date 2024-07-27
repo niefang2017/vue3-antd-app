@@ -55,8 +55,8 @@ const closeAll = useDebounceFn(() => {
 <style lang="less" scoped>
 .all-tags {
   position: absolute;
-  right: 20px;
-  top: 119px;
+  right: 10px;
+  top: 106px;
   z-index: 999999;
   width: 216px;
   &-content {

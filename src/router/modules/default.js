@@ -40,7 +40,8 @@ export const loginRouter = {
   meta: {
     key: 'login',
     // title: '登录',
-    notMenu: true
+    notMenu: true,
+    notTag: true
   },
   component: () => import('@/views/login/index.vue')
 }
@@ -52,7 +53,8 @@ export const noFound = {
   meta: {
     key: 'error',
     title: '404',
-    notMenu: true
+    notMenu: true,
+    notTag: true
   }
 }
 export const layoutRouter = [

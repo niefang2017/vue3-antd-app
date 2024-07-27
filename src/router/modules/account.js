@@ -8,7 +8,7 @@ export const accountRouters = [
       key: 'account',
       requiresAuth: true,
       notMenu: true, // 是否显示在左侧菜单
-      // notTag: false, // 是否显示在tag菜单
+      notTag: false, // 是否显示在tag菜单
       title: '个人中心'
     },
     component: main,

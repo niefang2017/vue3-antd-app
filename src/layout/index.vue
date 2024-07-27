@@ -3,9 +3,9 @@
     :locale="locale === 'en' ? enUS : zhCN"
     :theme="{
       token: {
-        colorPrimary: theme === 'dark' ? '#5468ff' : '#646cff',
-        algorithm: theme === 'dark' ? anttheme.darkAlgorithm : anttheme.defaultAlgorithm
-      }
+        colorPrimary: theme === 'dark' ? '#5468ff' : '#646cff'
+      },
+      algorithm: theme === 'dark' ? anttheme.darkAlgorithm : anttheme.defaultAlgorithm
     }"
   >
     <a-layout>
@@ -14,7 +14,7 @@
           position: 'fixed',
           zIndex: 10,
           width: '100%',
-          padding: '0 16px',
+          paddingLeft: '24px',
           backgroundColor: theme === 'dark' ? '#232324' : '#fff',
           borderBottom: '1px solid var(--h-switch-bg-light)'
         }"
@@ -331,7 +331,7 @@ watch(
 watch(
   () => route.path,
   () => {
-    if (!route.meta.notMenu) {
+    if (!route.meta.notTag) {
       const title = i18n.t(`menu.${route.meta.key}`)
       user.addOpenRouteList(route, title)
       state.openKeys = route.meta.key.split(':')
@@ -383,20 +383,25 @@ const getTree = (list) => {
         return getTree(item.children)
       }
       if (item.name === defaultRoute) {
-        const keys = item.key.split(':')
-        state.selectedKeys = [item.key]
+        const keys = item.meta.key.split(':')
+        state.selectedKeys = [item.meta.key]
         state.openKeys = keys
       }
-      if (item.meta && !item.meta.notMenu && item.key) {
+      if (item.meta && !item.meta.notMenu && item.meta.key) {
         opt = {
           title: i18n.t(`menu.${item.meta.key}`),
-          key: item.key,
+          key: item.meta.key,
           icon: item.meta.icon ? item.meta.icon : null,
           path: item.path,
           name: item.name
         }
       }
-      if (!item.notMenu && item.children !== null && item.children && item.children.length > 0) {
+      if (
+        !item.meta.notMenu &&
+        item.children !== null &&
+        item.children &&
+        item.children.length > 0
+      ) {
         opt.children = getTree(item.children)
       }
       if (Object.keys(opt).length) {
@@ -498,7 +503,7 @@ themeMedia.addEventListener('change', (e) => {
 .text {
   display: flex;
   align-items: center;
-  padding: 0 12px;
+  // padding: 0 12px;
   height: var(--nav-height-mobile);
   color: var(--nav-color);
   transition: color 0.5s;
@@ -652,14 +657,5 @@ themeMedia.addEventListener('change', (e) => {
 }
 .theme-light :deep(.ant-layout-sider-trigger) {
   background-color: var(--h-switch-c-bg-light);
-}
-.theme-dark {
-  .ant-layout-footer,
-  .ant-layout {
-    background-color: #232324;
-  }
-}
-.ant-layout-content {
-  padding: 20px;
 }
 </style>

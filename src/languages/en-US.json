@@ -18,7 +18,9 @@
     "login": "Login",
     "system": "System Management",
     "system:menu": "Menu Management",
-    "system:menuGroup": "Menu Group Management"
+    "system:menuGroup": "Menu Group Management",
+    "account": "Account",
+    "account:settings": "Account Settings"
   },
   "header": {
     "light": "Light",

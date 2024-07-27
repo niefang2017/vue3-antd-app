@@ -5,12 +5,14 @@ import { defineConfig, presetAttributify, presetIcons, presetTypography, presetU
 export default defineConfig({
   shortcuts: {
     'bg-base': 'bg-[#f0f0f0] dark:bg-[#20202a]',
-    'card-base': 'bg-[#ffffff] dark:bg-[#10101a]',
+    'card-base': 'bg-[#ffffff] dark:bg-[#1a1a1a]',
     'text-base': 'text-[#20202a] dark:text-[#f0f0f0]',
     'switch-label-base': 'bg-gray-200 dark:bg-gray-800',
     'switch-span-base': 'bg-white dark:bg-gray-300',
     'color-base': 'text-[#999999] dark:text-[#333333]',
-    'color-primary': 'text-[#1677ff] dark:text-[#1668dc]'
+    'color-primary': 'text-[#1677ff] dark:text-[#1668dc]',
+    'section-search': 'card-base p-16 ml-10 mr-10',
+    'section-content': 'card-base p-16 ml-10 mr-10'
   },
   presets: [
     presetUno(),

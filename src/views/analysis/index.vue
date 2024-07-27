@@ -1,13 +1,15 @@
 <template>
-  <div bg-black>数据看板</div>
-  <i antd-down></i>
-  <div class="i-logos-vue text-3xl" />
+  <section section-content>
+    <div>数据看板</div>
+    <i antd-down></i>
+    <div class="i-logos-vue text-3xl" />
 
-  <a-button type="primary">Primary</a-button>
-  <a-button>Default</a-button>
-  <a-button type="dashed">Dashed</a-button>
-  <a-button type="primary">Danger</a-button>
-  <a-range-picker v-model:value="value1" />
+    <a-button type="primary">Primary</a-button>
+    <a-button>Default</a-button>
+    <a-button type="dashed">Dashed</a-button>
+    <a-button type="primary">Danger</a-button>
+    <a-range-picker v-model:value="value1" />
+  </section>
 </template>
 
 <script setup>

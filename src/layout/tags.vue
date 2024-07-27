@@ -1,5 +1,5 @@
 <template>
-  <div class="flex center between tags-box">
+  <div class="flex center between tags-box pt-10 pr-10">
     <div class="icon-box" @click.stop="handleArrow('left')">
       <arrow-left-outlined />
     </div>
@@ -221,7 +221,6 @@ const handleClickDropdown = ({ key }, name) => {
  * @Description: 菜单tags
  */
 .tags-box {
-  padding-top: 2px;
   .icon-group {
     margin-left: 10px;
     flex-shrink: 0;
