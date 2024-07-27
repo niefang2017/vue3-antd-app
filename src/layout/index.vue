@@ -15,7 +15,8 @@
           zIndex: 10,
           width: '100%',
           padding: '0 16px',
-          backgroundColor: theme === 'dark' ? '#232324' : '#fff'
+          backgroundColor: theme === 'dark' ? '#232324' : '#fff',
+          borderBottom: '1px solid var(--h-switch-bg-light)'
         }"
         :theme="theme"
       >
@@ -123,8 +124,9 @@
                     ></path>
                     <path
                       d="M18.4,6.6c-0.3,0-0.5-0.1-0.7-0.3c-0.4-0.4-0.4-1,0-1.4l1.4-1.4c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-1.4,1.4C18.9,6.5,18.6,6.6,18.4,6.6z"
-                    ></path></svg
-                  ><svg
+                    ></path>
+                  </svg>
+                  <svg
                     xmlns="http://www.w3.org/2000/svg"
                     aria-hidden="true"
                     focusable="false"
@@ -225,13 +227,14 @@
               <template v-if="!item.children">
                 <a-menu-item :key="item.key">
                   <template #icon v-if="item.icon">
-                    <component :is="item.icon" />
+                    <Icon v-if="typeof item.icon === 'string'" :icon="item.icon" />
+                    <component v-else :is="item.icon" />
                   </template>
                   {{ item.title }}
                 </a-menu-item>
               </template>
               <template v-else>
-                <sub-menu :key="item.key" :menu-info="item" />
+                <sub-menu :key="item.key" :menu-info="item"></sub-menu>
               </template>
             </template>
           </a-menu>
@@ -239,7 +242,6 @@
         <a-layout :style="{ marginLeft: state.collapsed ? '80px' : '200px' }">
           <a-layout-content>
             <!-- 内容区域 -->
-            <div class="i-mdi-alarm text-orange-400" />
             <tags v-if="route.name !== 'login'"></tags>
             <router-view v-slot="{ Component, route }">
               <keep-alive v-if="route.meta.keepAlive">
@@ -256,19 +258,26 @@
 </template>
 
 <script setup>
-import { ref, watch, reactive } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import { storeToRefs } from 'pinia'
-import useStore from 'store'
+defineOptions({
+  name: 'LayoutIndex'
+})
+import 'dayjs/locale/zh-cn'
+
+import { UserOutlined } from '@ant-design/icons-vue'
 import { theme as anttheme } from 'ant-design-vue'
-import { MenuUnfoldOutlined, MenuFoldOutlined, UserOutlined } from '@ant-design/icons-vue'
 import enUS from 'ant-design-vue/es/locale/en_US'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
-import { routers } from '@/router/modules/default'
-import { useI18n } from 'vue-i18n'
-import dayjs from 'dayjs'
-import 'dayjs/locale/zh-cn'
+import Icon from 'components/Icon/index.vue'
 import SubMenu from 'components/submenu/index.vue'
+import dayjs from 'dayjs'
+import { storeToRefs } from 'pinia'
+import useStore from 'store'
+import { reactive, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRoute, useRouter } from 'vue-router'
+
+import { routers } from '@/router/modules/default'
+
 import Tags from './tags.vue'
 
 const { common, user } = useStore()
@@ -321,7 +330,7 @@ watch(
 )
 watch(
   () => route.path,
-  (nVal) => {
+  () => {
     if (!route.meta.notMenu) {
       const title = i18n.t(`menu.${route.meta.key}`)
       user.addOpenRouteList(route, title)
@@ -352,7 +361,7 @@ const logout = () => {
     name: 'login'
   })
 }
-const onCollapse = (collapsed, type) => {
+const onCollapse = (collapsed) => {
   state.openKeys = collapsed ? [] : state.preOpenKeys
   state.collapsed = collapsed
 }

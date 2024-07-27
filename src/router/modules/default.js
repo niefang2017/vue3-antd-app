@@ -1,11 +1,8 @@
 import layout from '@/layout/index.vue'
 import main from '@/views/main.vue'
-import {
-  DashboardOutlined,
-  AppstoreOutlined,
-  SmileOutlined,
-  HighlightOutlined
-} from '@ant-design/icons-vue'
+
+import { accountRouters } from './account'
+import { systemRouters } from './system'
 
 export const defaultRouters = [
   {
@@ -17,7 +14,7 @@ export const defaultRouters = [
       key: 'dashboard',
       // title: 'Dashboard',
       requiresAuth: true,
-      icon: DashboardOutlined
+      icon: 'ant-design:dashboard-outlined'
     },
     component: main,
     children: [
@@ -71,7 +68,7 @@ export const layoutRouter = [
       // title: '春秋阁管理后台-成语管理',
       requiresAuth: true
     },
-    children: [loginRouter, noFound, ...defaultRouters]
+    children: [loginRouter, noFound, ...accountRouters, ...defaultRouters, ...systemRouters]
   }
 ]
 export const routers = [...layoutRouter]

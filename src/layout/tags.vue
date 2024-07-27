@@ -16,27 +16,38 @@
           @click.stop="changeTag(item)"
           :style="{ left: index * 110 + 'px' }"
         >
-          <div class="tag-content">{{ t(`menu.${item.meta.key}`) }}</div>
-          <div class="icon-bg">
-            <svg
-              t="1665666821541"
-              class="icon"
-              viewBox="0 0 3712 1024"
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              p-id="3906"
-              width="116px"
-              height="48px"
-            >
-              <path
-                d="M3712 1024H0L148.224 207.008A240.544 240.544 0 0 1 377.216 0h2957.568a240.544 240.544 0 0 1 229.024 207.008z"
-                p-id="3907"
-              ></path>
-            </svg>
-          </div>
-          <div @click.stop="removeTag(item.name)" class="close" v-if="item.name !== 'analysis'">
-            <close-circle-filled />
-          </div>
+          <a-dropdown :trigger="['contextmenu']" placement="bottomLeft">
+            <div>
+              <div class="tag-content">{{ t(`menu.${item.meta.key}`) }}</div>
+              <div class="icon-bg">
+                <svg
+                  t="1665666821541"
+                  class="icon"
+                  viewBox="0 0 3712 1024"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  p-id="3906"
+                  width="116px"
+                  height="48px"
+                >
+                  <path
+                    d="M3712 1024H0L148.224 207.008A240.544 240.544 0 0 1 377.216 0h2957.568a240.544 240.544 0 0 1 229.024 207.008z"
+                    p-id="3907"
+                  ></path>
+                </svg>
+              </div>
+              <div @click.stop="removeTag(item.name)" class="close" v-if="item.name !== 'analysis'">
+                <close-circle-filled />
+              </div>
+            </div>
+            <template #overlay>
+              <a-menu @click="(val) => handleClickDropdown(val, item.name)">
+                <a-menu-item v-if="item.name !== 'analysis'" key="1">关闭</a-menu-item>
+                <a-menu-item key="2">关闭其他</a-menu-item>
+                <a-menu-item key="3">关闭所有标签</a-menu-item>
+              </a-menu>
+            </template>
+          </a-dropdown>
         </div>
       </div>
     </div>
@@ -52,46 +63,49 @@
   </div>
 </template>
 <script setup>
-import { ref, computed, toRefs } from 'vue'
-import { useRouter } from 'vue-router'
-import useStore from 'store'
-import { storeToRefs } from 'pinia'
 import {
   ArrowLeftOutlined,
   ArrowRightOutlined,
-  MenuOutlined,
-  CloseCircleFilled
+  CloseCircleFilled,
+  MenuOutlined
 } from '@ant-design/icons-vue'
-import { debounce } from 'lodash-es'
-import Alltags from './alltags.vue'
+import { useDebounceFn } from '@vueuse/core'
+import { storeToRefs } from 'pinia'
+import useStore from 'store'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
 
+import Alltags from './alltags.vue'
+defineOptions({
+  name: 'TagsIndex'
+})
 const { user } = useStore()
 const { t } = useI18n()
 const { openRouteList, currentRouteName } = storeToRefs(user)
 const router = useRouter()
-const offsetLeft = ref(0)
+// const offsetLeft = ref(0)
 const tagsboxRef = ref(null)
 const tagsScrollRef = ref(null)
 const showAllModal = ref(false)
-const defaultHome = {
-  title: t['dashboard:analysis'] || '分析页',
-  path: 'analysis',
-  name: 'analysis',
-  params: {},
-  query: {},
-  meta: {
-    key: 'dashboard:analysis'
-  }
-}
-const list = computed(() => {
-  console.log('路由', openRouteList)
-  return openRouteList ?? [defaultHome]
-})
+// const defaultHome = {
+//   title: t['dashboard:analysis'] || '分析页',
+//   path: 'analysis',
+//   name: 'analysis',
+//   params: {},
+//   query: {},
+//   meta: {
+//     key: 'dashboard:analysis'
+//   }
+// }
+// const list = computed(() => {
+//   console.log('路由', openRouteList)
+//   return openRouteList ?? [defaultHome]
+// })
 /**
  * @description 切换路由
  */
-const changeTag = debounce((item) => {
+const changeTag = useDebounceFn((item) => {
   if (currentRouteName.value === item.name) return
   router.push({
     path: item.path,
@@ -101,19 +115,20 @@ const changeTag = debounce((item) => {
   currentRouteName.value = item.name
   // user.updateRouteName(item.name)
   sizeInit()
-}, 500)
+}, 300)
 
 /**
  * @description 删除tag
  */
 console.log('openRouteList', openRouteList, currentRouteName.value)
-const removeTag = (name) => {
+
+const removeTag = (name, isOther = false) => {
   let current = 0
   openRouteList.value = openRouteList.value.filter((item, index) => {
     if (item.name === name) {
-      current = index - 1
+      current = isOther ? index : index - 1
     }
-    return item.name !== name
+    return isOther ? item.name === name || item.name === 'analysis' : item.name !== name
   })
   // const current = user.updateOpenRouteList(name)
   // console.log('current', current)
@@ -181,6 +196,20 @@ const clear = () => {
   // currentRouteName.value = 'analysis'
   tagsScrollRef.value.style.left = '0px'
   changeMore()
+}
+
+/**
+ * @description 处理下拉标签
+ * @param {Object} item 当前数据
+ * @param {String} key 1:关闭,2:关闭其他,3:关闭所有标签
+ */
+const handleClickDropdown = ({ key }, name) => {
+  const tmp = {
+    1: () => removeTag(name),
+    2: () => removeTag(name, true),
+    3: () => clear()
+  }
+  tmp[key]()
 }
 </script>
 <style lang="less" scoped>

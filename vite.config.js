@@ -1,15 +1,16 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import vueDevTools from 'vite-plugin-vue-devtools'
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
-import path from 'path'
-import Components from 'unplugin-vue-components/vite'
+import { resolve } from 'path'
 import UnoCSS from 'unocss/vite'
+// import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
-import IconsResolver from 'unplugin-icons/resolver'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
+import { defineConfig } from 'vite'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,7 +26,10 @@ export default defineConfig({
         })
       ]
     }),
-    Icons({ autoInstall: true })
+    Icons({ autoInstall: true, compiler: 'vue3' }),
+    createSvgIconsPlugin({
+      iconDirs: [resolve(process.cwd(), 'src/assets/svg')]
+    })
   ],
   resolve: {
     alias: {

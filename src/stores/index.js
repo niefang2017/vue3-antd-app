@@ -1,5 +1,5 @@
-import useUserStore from './user'
 import useCommonStore from './common'
+import useUserStore from './user'
 export default function useStore() {
   return {
     user: useUserStore(),

@@ -2,7 +2,9 @@
  * @description 设置页面标题
  */
 export const setTitle = (title) => {
-  document.title = title ? '春秋阁管理后台_' + title : '春秋阁'
+  // 兼容动态 title
+  if (typeof title === 'function') title = title(window.location.hash)
+  document.title = title ? '管理后台_' + title : 'SAAS'
 }
 
 /**
@@ -32,7 +34,7 @@ export const deepClone = (obj) => {
   if (obj == null || typeof obj !== 'object') return obj
   let res = obj instanceof Array ? [] : {}
   for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
       res[key] = deepClone(obj[key])
     }
   }
@@ -41,14 +43,37 @@ export const deepClone = (obj) => {
 /**
  * @description 生成guid
  */
-export const guid = (length=32) => {
-  let result = '';
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  const charactersLength = characters.length;
-  let counter = 0;
+export const guid = (length = 32) => {
+  let result = ''
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const charactersLength = characters.length
+  let counter = 0
   while (counter < length) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    counter += 1;
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+    counter += 1
   }
-  return result;
+  return result
+}
+/**
+ * @description 返回storekey
+ */
+export const getStoreKey = (key) => {
+  return `${key}_${import.meta.env.MODE}`
+}
+
+/**
+ * 设置系统剪贴板的内容
+ * @property {string} data 需要设置的内容
+ */
+export const setClipboardData = (data) => {
+  return new Promise((resolve) => {
+    navigator.clipboard.writeText(data).then(
+      function () {
+        resolve(data)
+      },
+      function () {
+        resolve(false)
+      }
+    )
+  })
 }

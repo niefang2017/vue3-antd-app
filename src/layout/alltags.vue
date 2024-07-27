@@ -5,7 +5,7 @@
         <div
           :class="['flex center between item']"
           :key="item.name"
-          v-for="(item, index) in openRouteList"
+          v-for="item in openRouteList"
           @click.stop="handleChangeTag(item)"
         >
           <div class="title">{{ item.title }}</div>
@@ -26,11 +26,13 @@
 </template>
 
 <script setup>
-import useStore from 'store'
+defineOptions({
+  name: 'AllTags'
+})
+import { CloseCircleFilled, DeleteOutlined } from '@ant-design/icons-vue'
+import { useDebounceFn } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
-import { debounce } from 'lodash-es'
-import { computed } from 'vue'
-import { DeleteOutlined, CloseCircleFilled } from '@ant-design/icons-vue'
+import useStore from 'store'
 const { user } = useStore()
 const { openRouteList } = storeToRefs(user)
 const emits = defineEmits(['clear', 'remove', 'changeTag'])
@@ -38,16 +40,16 @@ const handleChangeTag = (item) => {
   if (!item || !item.name) return
   emits('changeTag', item)
 }
-const handleRemove = debounce((name) => {
+const handleRemove = useDebounceFn((name) => {
   if (!name) return
   emits('remove', name)
-}, 500)
+}, 300)
 /**
  * @description 清除
  */
-const closeAll = debounce(() => {
+const closeAll = useDebounceFn(() => {
   emits('clear')
-}, 500)
+}, 300)
 </script>
 
 <style lang="less" scoped>

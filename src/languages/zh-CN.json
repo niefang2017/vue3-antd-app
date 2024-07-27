@@ -15,7 +15,10 @@
     "gushi:detail": "诗词详情",
     "gushi:author": "作者",
     "editor": "编辑器",
-    "login": "登录"
+    "login": "登录",
+    "system": "系统管理",
+    "system:menu": "菜单管理",
+    "system:menuGroup": "菜单组管理"
   },
   "header": {
     "light": "浅色",

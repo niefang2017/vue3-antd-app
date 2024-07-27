@@ -15,7 +15,10 @@
     "gushi:detail": "Poetry Management",
     "gushi:author": "author",
     "editor": "Editor",
-    "login": "Login"
+    "login": "Login",
+    "system": "System Management",
+    "system:menu": "Menu Management",
+    "system:menuGroup": "Menu Group Management"
   },
   "header": {
     "light": "Light",

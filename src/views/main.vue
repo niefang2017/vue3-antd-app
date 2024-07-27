@@ -6,3 +6,8 @@
     <component :is="Component" v-else />
   </router-view>
 </template>
+<script setup>
+defineOptions({
+  name: 'AppMain'
+})
+</script>

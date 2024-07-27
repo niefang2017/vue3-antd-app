@@ -7,7 +7,7 @@
  * @Description: 启蒙
  *
  */
-import { post, get, del, put } from '../request'
+import { del, get, post, put } from '../request'
 /**
  * @description: 新增古诗
  * @param {*} params

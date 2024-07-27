@@ -1,10 +1,10 @@
 <script setup>
-import WelcomeItem from './WelcomeItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
 import CommunityIcon from './icons/IconCommunity.vue'
+import DocumentationIcon from './icons/IconDocumentation.vue'
+import EcosystemIcon from './icons/IconEcosystem.vue'
 import SupportIcon from './icons/IconSupport.vue'
+import ToolingIcon from './icons/IconTooling.vue'
+import WelcomeItem from './WelcomeItem.vue'
 </script>
 
 <template>
@@ -86,3 +86,4 @@ import SupportIcon from './icons/IconSupport.vue'
     <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
   </WelcomeItem>
 </template>
+./Icon/IconDocumentation.vue./Icon/IconTooling.vue./Icon/IconEcosystem.vue./Icon/IconCommunity.vue./Icon/IconSupport.vue

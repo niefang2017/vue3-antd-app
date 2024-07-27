@@ -1,12 +1,13 @@
 :root {
-  --primary-color: #646cff;
+  --primary-color: #1677ff;
   --background-color: #edeaf1;
   --white: #fff;
   --black: #232324;
+  --slider-dark: #1a1a1a;
   --page-background: #e8e5ec;
   --text-color: #232324;
   --a-color: #232324;
-  --a-hover: #646cff;
+  --a-hover: #1677ff;
   --h-a-active-bg: #e6f7ff;
   --ant-primary-1: #e6f7ff;
   --ant-primary-2: #bae7ff;
@@ -23,7 +24,7 @@
   --darkreader-border--ant-primary-3: #155780;
   --nav-height-mobile: 56px;
   --nav-height-desktop: 72px;
-  --nav-color: var(--text-color);
+  --nav-color: #232324;
   --bg-white: #f1f1f1;
   --h-switch-br-light: rgba(60, 60, 60, 0.29);
   --h-switch-br-h-light: #8e8e8e;
@@ -33,6 +34,7 @@
   --h-shadow-light: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
   --h-tag-bg-secondary: #e1e2e3;
   --h-tag-color-secondary: #999;
+  --page-bg-light: #f9f9f9;
 }
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -69,6 +71,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh; */
+  background-color: var(--page-bg-light);
 }
 
 h1 {

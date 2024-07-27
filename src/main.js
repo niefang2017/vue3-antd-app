@@ -1,12 +1,14 @@
 import 'virtual:uno.css'
 import './assets/main.css'
 import './style.css'
-import { createApp } from 'vue'
-import VueI18n from './languages'
+import 'virtual:svg-icons-register'
+
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import { createApp } from 'vue'
 
 import App from './App.vue'
+import VueI18n from './languages'
 import router from './router'
 
 const app = createApp(App)

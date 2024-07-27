@@ -7,10 +7,11 @@
  * @Description: 拦截器
  *
  */
-import axios from 'axios'
-import router from '@/router'
-import useStore from 'store'
 import { message } from 'ant-design-vue'
+import axios from 'axios'
+import useStore from 'store'
+
+import router from '@/router'
 const { user } = useStore()
 const isDev = true
 /**
