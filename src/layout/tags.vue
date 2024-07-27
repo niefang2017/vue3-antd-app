@@ -3,7 +3,7 @@
     <div class="icon-box" @click.stop="handleArrow('left')">
       <arrow-left-outlined />
     </div>
-    <div class="flex center tags" ref="tagsboxRef">
+    <div class="flex flex-items-center tags" ref="tagsboxRef">
       <div
         class="tags-ul"
         ref="tagsScrollRef"
@@ -16,7 +16,7 @@
           @click.stop="changeTag(item)"
           :style="{ left: index * 110 + 'px' }"
         >
-          <a-dropdown :trigger="['contextmenu']" placement="bottomLeft">
+          <a-dropdown class="flex-1" :trigger="['contextmenu']" placement="bottomLeft">
             <div>
               <div class="tag-content">{{ t(`menu.${item.meta.key}`) }}</div>
               <div class="icon-bg">
