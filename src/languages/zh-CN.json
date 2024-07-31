@@ -20,7 +20,12 @@
     "system:menu": "菜单管理",
     "system:menuGroup": "菜单组管理",
     "account": "个人中心",
-    "account:settings": "个人中心设置"
+    "account:settings": "个人中心设置",
+    "enterprise": "企业管理",
+    "enterprise:employee": "员工管理",
+    "enterprise:role": "角色管理",
+    "enterprise:department": "部门管理",
+    "enterprise:information": "企业信息"
   },
   "header": {
     "light": "浅色",

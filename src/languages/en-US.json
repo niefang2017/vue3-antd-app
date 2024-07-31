@@ -20,7 +20,11 @@
     "system:menu": "Menu Management",
     "system:menuGroup": "Menu Group Management",
     "account": "Account",
-    "account:settings": "Account Settings"
+    "enterprise": "Enterprise Management",
+    "enterprise:employee": "Employee Management",
+    "enterprise:role": "Role Management",
+    "enterprise:department": "Department Management",
+    "enterprise:information": "Enterprise Information"
   },
   "header": {
     "light": "Light",

@@ -4,7 +4,7 @@
  * @return {Array}
  */
 export const formatMenuTreeData = (data = [], isFull = false) => {
-  function traverseAndReplace(item = {}) {
+  function traverseAndReplace(item = {}, parentId = '') {
     if (typeof item === 'object' && item !== null) {
       const title = typeof item?.meta?.title === 'function' ? item.meta.title() : item.meta.title
       const key = item?.key ?? item?.meta?.key ?? item?.name
@@ -12,7 +12,8 @@ export const formatMenuTreeData = (data = [], isFull = false) => {
         key: key,
         title: title || '暂无名称',
         disabled: item?.disabled ?? false,
-        disableCheckbox: item?.disabled ?? item?.disableCheckbox ?? false
+        disableCheckbox: item?.disabled ?? item?.disableCheckbox ?? false,
+        parentId
       }
       if (isFull) {
         tmp.icon = item.meta?.icon ?? ''
@@ -21,31 +22,33 @@ export const formatMenuTreeData = (data = [], isFull = false) => {
         tmp.status = item?.status ?? null
       }
       if (Array.isArray(item.children)) {
-        tmp.children = item.children.map(traverseAndReplace)
+        tmp.children = item.children.map((c) => traverseAndReplace(c, tmp.key))
       }
       return tmp
     }
   }
-  return data.map(traverseAndReplace)
+  return data.map((item) => traverseAndReplace(item, ''))
 }
 
 /**
  * @description 处理Tree数据字段更改
  */
-export const changeTreeData = (
-  data = [],
-  key = 'id',
-  value = '',
-  changekey = 'status',
-  changeValue = ''
-) => {
+export const changeTreeData = (data = [], key = 'id', value = '', row = {}, isAdd = false) => {
   function traverseAndReplace(item) {
     if (typeof item === 'object' && item !== null) {
-      const tmp = {
+      let tmp = {
         ...item
       }
       if (tmp[key] === value) {
-        tmp[changekey] = changeValue
+        if (isAdd) {
+          tmp.children = tmp?.children ?? []
+          tmp.children.push(row)
+        } else {
+          tmp = {
+            ...item,
+            ...row
+          }
+        }
       }
       if (tmp[key] !== value && Array.isArray(item.children)) {
         tmp.children = item.children.map(traverseAndReplace)
@@ -53,5 +56,27 @@ export const changeTreeData = (
       return tmp
     }
   }
+
   return data.map(traverseAndReplace)
+}
+
+/**
+ * @description: 格式化菜单数据
+ * @param {Array} data
+ * @return {Array}
+ */
+export const formatTreeData = (data = []) => {
+  function traverseAndReplace(item = {}, parentId = '') {
+    if (typeof item === 'object' && item !== null) {
+      const tmp = {
+        ...item,
+        parentId
+      }
+      if (Array.isArray(item.children)) {
+        tmp.children = item.children.map((c) => traverseAndReplace(c, tmp.key))
+      }
+      return tmp
+    }
+  }
+  return data.map((item) => traverseAndReplace(item, ''))
 }

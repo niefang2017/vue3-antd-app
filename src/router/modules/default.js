@@ -2,6 +2,7 @@ import layout from '@/layout/index.vue'
 import main from '@/views/main.vue'
 
 import { accountRouters } from './account'
+import { enterpriseRouters } from './enterprise'
 import { systemRouters } from './system'
 
 export const defaultRouters = [
@@ -70,7 +71,14 @@ export const layoutRouter = [
       // title: '春秋阁管理后台-成语管理',
       requiresAuth: true
     },
-    children: [loginRouter, noFound, ...accountRouters, ...defaultRouters, ...systemRouters]
+    children: [
+      loginRouter,
+      noFound,
+      ...accountRouters,
+      ...defaultRouters,
+      ...systemRouters,
+      ...enterpriseRouters
+    ]
   }
 ]
 export const routers = [...layoutRouter]
