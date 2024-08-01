@@ -1,5 +1,6 @@
 // import { get, post, del } from '../request'
 import { routers } from '@/router/modules/default'
+const whiteNams = ['login', 'error', 'noAccess']
 /**
  * @description: 登录
  * @param {*} params
@@ -13,7 +14,7 @@ export const getMenuList = (params) => {
         code: 1,
         data: routers[0].children.filter((item, index) => {
           item.status = index % 2 === 0 ? 1 : 0
-          return item.name !== 'login' && item.name !== 'error'
+          return !whiteNams.includes(item.name)
         })
       })
     }, 1000)
