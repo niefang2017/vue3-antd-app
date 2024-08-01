@@ -80,3 +80,23 @@ export const formatTreeData = (data = []) => {
   }
   return data.map((item) => traverseAndReplace(item, ''))
 }
+
+/**
+ * description: 拍平tree
+ */
+export const flatTree = (tree) => {
+  const result = []
+  function traverse(node, parentKey) {
+    const key = node?.key ?? node?.meta?.key ?? node?.name
+    const tmp = { name: node.name, path: node.path, ...node.meta, key }
+    const newNode = Object.assign({}, tmp, { parentKey }, { children: undefined })
+    delete newNode.children
+    result.push(newNode)
+    if (node.children && Array.isArray(node.children)) {
+      node.children.forEach((child) => traverse(child, node.key))
+    }
+  }
+  tree.forEach((node) => traverse(node, null))
+
+  return result
+}

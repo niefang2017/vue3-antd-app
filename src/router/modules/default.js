@@ -58,6 +58,19 @@ export const noFound = {
     notTag: true
   }
 }
+export const noAccessRouter = {
+  path: '/noAccess',
+  name: 'noAccess',
+  meta: {
+    key: 'noAccess',
+    title: '无权限',
+    requiresAuth: true, // 是否授权
+    notMenu: true,
+    notTag: true
+  },
+  component: () => import('@/views/no-access/index.vue')
+}
+
 export const layoutRouter = [
   {
     path: '/',
@@ -68,12 +81,13 @@ export const layoutRouter = [
     component: layout,
     meta: {
       key: 'root',
-      // title: '春秋阁管理后台-成语管理',
+      title: '管理后台',
       requiresAuth: true
     },
     children: [
       loginRouter,
       noFound,
+      noAccessRouter,
       ...accountRouters,
       ...defaultRouters,
       ...systemRouters,

@@ -23,7 +23,7 @@
         <a-row type="flex" align="center" justify="space-between">
           <a-col>
             <a
-              v-if="route.name !== 'login'"
+              v-if="!['login'].includes(route.name)"
               href="/#/"
               class="logo flex"
               :class="state.collapsed ? 'collapsed' : ''"
@@ -197,9 +197,9 @@
           </a-col>
         </a-row>
       </a-layout-header>
-      <a-layout :style="{ marginTop: '64px' }">
+      <a-layout :style="{ marginTop: !['login'].includes(route.name) ? '64px' : '0' }">
         <a-layout-sider
-          v-if="route.name !== 'login'"
+          v-if="!showSliderNames.includes(route.name)"
           :theme="theme"
           breakpoint="lg"
           collapsed-width="80"
@@ -239,16 +239,34 @@
             </template>
           </a-menu>
         </a-layout-sider>
-        <a-layout :style="{ marginLeft: state.collapsed ? '80px' : '200px' }">
+        <a-layout
+          :style="{
+            marginLeft: !showSliderNames.includes(route.name)
+              ? state.collapsed
+                ? '80px'
+                : '200px'
+              : 0
+          }"
+        >
           <a-layout-content>
             <!-- 内容区域 -->
-            <tags v-if="route.name !== 'login'"></tags>
-            <router-view v-slot="{ Component, route }">
-              <keep-alive v-if="route.meta.keepAlive">
-                <component :is="Component" />
-              </keep-alive>
-              <component :is="Component" v-else />
-            </router-view>
+            <tags v-if="!showSliderNames.includes(route.name)"></tags>
+            <div
+              :class="[
+                'app-content',
+                !showSliderNames.includes(route.name) ? ' ml10 mr10 mb10' : ''
+              ]"
+              :style="{ 'min-height': 'calc(100vh - 116px)' }"
+              flex
+              flex-col
+            >
+              <router-view v-slot="{ Component, route }">
+                <keep-alive v-if="route.meta.keepAlive">
+                  <component :is="Component" />
+                </keep-alive>
+                <component :is="Component" v-else />
+              </router-view>
+            </div>
           </a-layout-content>
           <a-layout-footer style="text-align: center">春秋阁 ©{{ state.year }}</a-layout-footer>
         </a-layout>
@@ -279,7 +297,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { routers } from '@/router/modules/default'
 
 import Tags from './tags.vue'
-
+const showSliderNames = ['login', 'noAccess']
 const { common, user } = useStore()
 const { locale, i18nLocal, theme } = storeToRefs(common)
 const { userInfo } = storeToRefs(user)
@@ -387,7 +405,8 @@ const getTree = (list) => {
         state.selectedKeys = [item.meta.key]
         state.openKeys = keys
       }
-      if (item.meta && !item.meta.notMenu && item.meta.key) {
+      const hasPermission = user.permissions.some((permission) => permission.key === item.meta.key)
+      if (item.meta && !item.meta.notMenu && item.meta.key && hasPermission) {
         opt = {
           title: i18n.t(`menu.${item.meta.key}`),
           key: item.meta.key,
@@ -413,6 +432,17 @@ const getTree = (list) => {
 }
 let menuList = getTree(routers)
 const menuOptions = ref(menuList)
+/**
+ * @description 刷新页面获取权限
+ */
+const getUserInfo = () => {
+  console.log('获取权限')
+  if (user.token) {
+    user.getUserInfo()
+  }
+}
+getUserInfo()
+
 // 切换主题
 const changeTheme = (checked) => {
   changeRootClassName(checked)

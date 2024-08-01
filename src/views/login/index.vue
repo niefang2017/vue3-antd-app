@@ -43,11 +43,11 @@
   </a-row>
 </template>
 <script setup>
+import { LockOutlined,UserOutlined } from '@ant-design/icons-vue'
 // import { storeToRefs } from 'pinia'
-// import { login } from 'service/api'
-import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
+import { login } from 'service/api'
 import useStore from 'store'
-import { computed, reactive } from 'vue'
+import { computed,reactive } from 'vue'
 import { useRouter } from 'vue-router'
 defineOptions({
   name: 'LoginIndex'
@@ -55,58 +55,61 @@ defineOptions({
 const { user } = useStore()
 const router = useRouter()
 const formState = reactive({
-  username: '',
-  password: ''
+  username: 'admin',
+  password: '111111'
 })
 const onFinish = async (values) => {
   console.log('Success:', values, values.username)
   console.log('document.referrer', document.referrer)
   // 模拟登录
-  setTimeout(() => {
-    user.login({
-      userName: values.username,
-      id: '111',
-      token: 'token',
-      avatar: 'https://oss.jinxy.com.cn/prod/website/static/miniApp/images/my/jxy_default_logo.png'
-    })
-    if (
-      !document.referrer ||
-      !document.referrer.includes(location.host) ||
-      document.referrer === location.href ||
-      location.href.includes('login')
-    ) {
-      console.log('更改')
-      router.push({ path: '/' })
-    } else {
-      router.back()
-    }
-  }, 1000)
-  // try {
-  //   const res = await login({
-  //     email: values.username,
-  //     password: values.password,
-  //     provider: 'local'
+  // const res = await login(values)
+  // setTimeout(() => {
+  //   user.login({
+  //     userName: values.username,
+  //     id: '111',
+  //     token: 'token',
+  //     avatar: 'https://oss.jinxy.com.cn/prod/website/static/miniApp/images/my/jxy_default_logo.png'
   //   })
-  //   console.log('res', res)
-  //   if (res && res.code === 0) {
-  //     // 更新用户信息
-  //     user.login(res.data)
-  //     if (
-  //       !document.referrer ||
-  //       !document.referrer.includes(location.host) ||
-  //       document.referrer === location.href
-  //     ) {
-  //       router.push({ path: '/' })
-  //     } else {
-  //       router.back()
-  //     }
+  //   if (
+  //     !document.referrer ||
+  //     !document.referrer.includes(location.host) ||
+  //     document.referrer === location.href ||
+  //     location.href.includes('login')
+  //   ) {
+  //     console.log('更改')
+  //     router.push({ path: '/' })
   //   } else {
-  //     user.logout()
+  //     router.back()
   //   }
-  // } catch (error) {
-  //   user.logout()
-  //   console.log('error', error)
-  // }
+  // }, 1000)
+  try {
+    const res = await login({
+      email: values.username,
+      password: values.password,
+      provider: 'local'
+    })
+    console.log('res', res)
+    if (res && res.code === 1) {
+      // 更新用户信息
+      user.login(res.data)
+      const isLogin = await user.getUserInfo()
+      if (!isLogin) return
+      if (
+        !document.referrer ||
+        !document.referrer.includes(location.host) ||
+        document.referrer === location.href
+      ) {
+        router.push({ path: '/' })
+      } else {
+        router.back()
+      }
+    } else {
+      user.logout()
+    }
+  } catch (error) {
+    user.logout()
+    console.log('error', error)
+  }
 }
 const onFinishFailed = (errorInfo) => {
   console.log('Failed:', errorInfo)

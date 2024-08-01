@@ -2,8 +2,8 @@
  * @Author: 聂芳 nie4161204@qq.com
  * @Date: 2023-02-20 12:07:25
  * @LastEditors: 聂芳 nie4161204@qq.com
- * @LastEditTime: 2023-09-29 07:46:12
- * @FilePath: /vue3-frog-admin/src/service/index.js
+ * @LastEditTime: 2024-08-01 22:45:59
+ * @FilePath: /vue3-antd-app/src/service/index.js
  * @Description: 拦截器
  *
  */
@@ -12,7 +12,6 @@ import axios from 'axios'
 import useStore from 'store'
 
 import router from '@/router'
-const { user } = useStore()
 const isDev = true
 /**
  * 请求失败后的错误统一处理
@@ -115,7 +114,8 @@ const instance = axios.create({
 // 请求数据拦截
 instance.interceptors.request.use(
   (config) => {
-    const token = user.userInfo.token
+    const { user } = useStore()
+    const token = user.token
     if (token) {
       config.headers['Authorization'] = token
     }
