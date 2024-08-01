@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import { useDebounceFn, watchDebounced } from '@vueuse/core'
+import { useDebounceFn,watchDebounced } from '@vueuse/core'
 import { message } from 'ant-design-vue'
 import { uploadImg } from 'service/api'
 import { guid } from 'utils/tool'
@@ -124,9 +124,8 @@ const fileList = ref(formatFileList(props.value))
 const loading = ref(false)
 let errorIds = []
 const handleChange = useDebounceFn(async (res) => {
-  console.log('更改图片', res)
   let resFileList = [...res.fileList]
-  let count = 0
+  // let count = 0
   if (errorIds.length) {
     errorIds = errorIds.filter((el) => {
       const idx = fileList.value.findIndex((item) => item.uid === el)
@@ -146,29 +145,22 @@ const handleChange = useDebounceFn(async (res) => {
     const upList = resFileList.filter(
       (item) => !['done', 'removed'].includes(item.status) && !errorIds.includes(item.uid)
     )
-    console.log('resFileList上传过滤', resFileList)
-    console.log('resFileList上传过滤upList', upList)
     for await (const file of upList) {
       const result = await handleServiceData(file)
-      resFileList[count] = {
-        // ...file,
-        ...result,
-        response: {
-          url: result.url
-        }
+      const idx = resFileList.findIndex((item) => item.uid === file.uid)
+      if (idx !== -1) {
+        resFileList.splice(idx, 1, {
+          ...file,
+          ...result,
+          response: {
+            url: result.url
+          }
+        })
       }
-      // resFileList[count].url = result.url
-      // resFileList[count].uid = file.uid
-      // resFileList[count].status = 'done'
-      // resFileList[count].response = {
-      //   url: result.url
-      // }
-      count++
     }
   }
-  console.log('resFileList', resFileList, fileList.value)
   fileList.value = resFileList
-}, 1)
+}, 300)
 const handleRemove = (file) => {
   console.log('file', file)
   const index = fileList.value.findIndex((item) => item.uid === file.uid)
@@ -250,7 +242,7 @@ const beforeUpload = async (file) => {
   }
   if (status && isLt2M) {
     fileList.value = [...(fileList.value || []), file]
-    // console.log('上传', file)
+    console.log('上传', file)
     // const result = await handleServiceData(file)
     // const idx = fileList.value.findIndex((item) => item.uid === file.uid)
     // if (idx !== -1) {
