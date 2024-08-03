@@ -1,5 +1,5 @@
 <template>
-  <div class="flex center between tags-box pt-10 pr-10">
+  <div class="flex center between tags-box pt10 pr10">
     <div class="icon-box" @click.stop="handleArrow('left')">
       <arrow-left-outlined />
     </div>
@@ -17,8 +17,8 @@
           :style="{ left: index * 110 + 'px' }"
         >
           <a-dropdown class="flex-1" :trigger="['contextmenu']" placement="bottomLeft">
-            <div>
-              <div class="tag-content">{{ t(`menu.${item.meta.key}`) }}</div>
+            <div relative>
+              <div class="tag-content line-clamp-1">{{ t(`menu.${item.meta.key}`) }}</div>
               <div class="icon-bg">
                 <svg
                   t="1665666821541"
@@ -292,9 +292,9 @@ const handleClickDropdown = ({ key }, name) => {
         width: 100%;
         padding: 0 20px;
         height: 32px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+        // white-space: nowrap;
         text-align: center;
         color: var(--h-tag-color-secondary);
         font-size: 12px;

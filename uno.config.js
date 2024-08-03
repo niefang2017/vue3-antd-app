@@ -1,4 +1,5 @@
 // import presetIcons from '@unocss/preset-icons/browser'
+import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 import presetRemToPx from '@unocss/preset-rem-to-px'
 import { defineConfig, presetAttributify, presetIcons, presetTypography, presetUno } from 'unocss'
 
@@ -36,7 +37,10 @@ export default defineConfig({
       collections: {
         carbon: () => import('@iconify-json/carbon/icons.json').then((i) => i.default),
         mdi: () => import('@iconify-json/mdi/icons.json').then((i) => i.default),
-        antd: () => import('@iconify-json/ant-design/icons.json').then((i) => i.default)
+        antd: () => import('@iconify-json/ant-design/icons.json').then((i) => i.default),
+        custom: FileSystemIconLoader('./src/assets/svg', (svg) =>
+          svg.replace(/#fff/, 'currentColor')
+        )
       }
     })
   ]

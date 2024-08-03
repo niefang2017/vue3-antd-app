@@ -3,6 +3,8 @@
     <div>数据看板</div>
     <i antd-down></i>
     <div class="i-logos-vue text-3xl" />
+    <i class="i-custom:logo color-primary"></i>
+    <i class="i-custom:bull-fill text-20 color-primary"></i>
     无权限按钮控制:
     <div v-permission="'admin'">无权限</div>
     <div v-permission="'dashboard:analysis'">有权限按钮</div>
