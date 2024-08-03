@@ -45,7 +45,7 @@ pnpm test:unit
 pnpm lint
 ```
 
-### Commit
+### Commit 提交
 
 ```sh
 pnpm commit
