@@ -5,15 +5,16 @@ import { defineConfig, presetAttributify, presetIcons, presetTypography, presetU
 
 export default defineConfig({
   shortcuts: {
-    'bg-base': 'bg-[#f0f0f0] dark:bg-[#20202a]',
-    'card-base': 'bg-[#ffffff] dark:bg-[#1a1a1a]',
-    'text-base': 'text-[#20202a] dark:text-[#f0f0f0]',
-    'switch-label-base': 'bg-gray-200 dark:bg-gray-800',
-    'switch-span-base': 'bg-white dark:bg-gray-300',
-    'color-base': 'text-[#999999] dark:text-[#333333]',
-    'color-primary': 'text-[#1677ff] dark:text-[#1668dc]',
-    'section-search': 'card-base p-16 ml-10 mr-10',
-    'section-content': 'card-base p-16 ml-10 mr-10'
+    'switch-animation': 'transition duration-300',
+    'bg-base': 'bg-[#f0f0f0] dark:bg-[#20202a] switch-animation',
+    'card-base': 'bg-[#ffffff] dark:bg-[#1a1a1a] switch-animation',
+    'text-base': 'text-[#20202a] dark:text-[#f0f0f0] switch-animation',
+    'switch-label-base': 'bg-gray-200 dark:bg-gray-800 switch-animation',
+    'switch-span-base': 'bg-white dark:bg-gray-300 switch-animation',
+    'color-base': 'text-[#999999] dark:text-[#333333] switch-animation',
+    'color-primary': 'text-[#1677ff] dark:text-[#1668dc] switch-animation',
+    'section-search': 'card-base p-16 ml-10 mr-10 switch-animation',
+    'section-content': 'card-base p-16 ml-10 mr-10 switch-animation'
   },
   presets: [
     presetUno(),
