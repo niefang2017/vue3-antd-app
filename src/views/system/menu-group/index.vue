@@ -14,11 +14,7 @@
             layout="horizontal"
             ref="formRef"
           >
-            <a-form-item
-              name="checkedKeys"
-              class="mb-0"
-              :style="{ height: `${menuHeight + 40}px` }"
-            >
+            <a-form-item name="checkedKeys" class="mb0" :style="{ height: `${menuHeight + 40}px` }">
               <use-tree-form
                 v-if="item.list.length"
                 v-model:value="item.checkedKeys"
@@ -28,7 +24,7 @@
               ></use-tree-form>
               <a-empty v-else mt-100 />
             </a-form-item>
-            <div v-if="item.list.length" class="p-16 border-t border-t-gray-100 border-t-solid">
+            <div v-if="item.list.length" class="p16 border-t border-t-gray-100 border-t-solid">
               <a-button type="primary" :loading="loading" @click="handleSave"> 保存设置 </a-button>
             </div>
           </a-form>
