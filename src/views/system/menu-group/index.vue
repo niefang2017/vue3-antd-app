@@ -64,20 +64,6 @@ const tabList = ref([
     list: [],
     loaded: false,
     checkedKeys: ['service', 'version', 'product:setting', 'product:library', 'product']
-  },
-  {
-    key: '3',
-    tab: '门店组织',
-    list: [],
-    loaded: false,
-    checkedKeys: []
-  },
-  {
-    key: '4',
-    tab: '顶级组织',
-    list: [],
-    loaded: false,
-    checkedKeys: []
   }
 ])
 const current = computed(() => tabList.value.findIndex((item) => item.key === activeKey.value))
