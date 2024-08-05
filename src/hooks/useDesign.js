@@ -1,5 +1,5 @@
 export function useDesign(scope) {
-  const prefixCls = 'jxy'
+  const prefixCls = 'nief'
   return {
     prefixCls: `${prefixCls}-${scope}`,
     prefixVar: prefixCls

@@ -185,20 +185,20 @@ function handleSearchChange(e) {
 }
 </script>
 <style>
-.jxy-icon-picker-popover .ant-input-group-addon {
+.nief-icon-picker-popover .ant-input-group-addon {
   padding: 0;
 }
 
-.jxy-icon-picker-popover .ant-input {
+.nief-icon-picker-popover .ant-input {
   cursor: pointer;
 }
-.jxy-icon-picker-popover {
+.nief-icon-picker-popover {
   width: 300px;
 }
-.jxy-icon-picker-popover .ant-popover-inner-content {
+.nief-icon-picker-popover .ant-popover-inner-content {
   padding: 0;
 }
-.jxy-icon-picker-popover .scrollbar {
+.nief-icon-picker-popover .scrollbar {
   height: 220px;
 }
 </style>

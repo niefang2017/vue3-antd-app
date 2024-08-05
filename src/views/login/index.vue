@@ -43,11 +43,11 @@
   </a-row>
 </template>
 <script setup>
-import { LockOutlined,UserOutlined } from '@ant-design/icons-vue'
+import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
 // import { storeToRefs } from 'pinia'
 import { login } from 'service/api'
 import useStore from 'store'
-import { computed,reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 defineOptions({
   name: 'LoginIndex'
@@ -68,7 +68,7 @@ const onFinish = async (values) => {
   //     userName: values.username,
   //     id: '111',
   //     token: 'token',
-  //     avatar: 'https://oss.jinxy.com.cn/prod/website/static/miniApp/images/my/jxy_default_logo.png'
+  //     avatar: 'https://oss.jinxy.com.cn/prod/website/static/miniApp/images/my/nief_default_logo.png'
   //   })
   //   if (
   //     !document.referrer ||
