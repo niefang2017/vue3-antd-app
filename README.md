@@ -27,6 +27,8 @@ table: [vxetable](https://vxetable.cn/v3/#/table/api)
 
 图标级：[icones](https://icones.js.org/).
 
+文档说明：[juejin](https://juejin.cn/post/7398511534744322063).
+
 ```vue
 <!-- antd图标 -->
 <i class="i-antd:down" />
