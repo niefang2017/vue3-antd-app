@@ -516,7 +516,7 @@ themeMedia.addEventListener('change', (e) => {
   margin-left: 10px;
   white-space: nowrap;
   transition: all linear 0.3s;
-  color: var(--black);
+  color: var(--nav-color);
 }
 
 .site-layout-sub-header-background {
