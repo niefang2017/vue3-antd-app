@@ -120,8 +120,8 @@ import { useDebounceFn } from '@vueuse/core'
 import { message } from 'ant-design-vue'
 import IconPicker from 'components/Icon/IconPicker'
 import { menuStatusList, menuTypeList } from 'constants/index'
-import { deepClone } from 'utils/tool'
-import { computed, ref, toRaw, watch } from 'vue'
+import { deepClone, guid } from 'utils/tool'
+import { computed, ref, toRaw } from 'vue'
 const [messageApi, contextHolder] = message.useMessage()
 defineOptions({ name: 'EditMenu' })
 defineProps({
@@ -180,7 +180,7 @@ const formRules = ref({
   ],
   icon: [
     {
-      required: true,
+      required: false,
       message: '请选择菜单图标'
     }
   ],
@@ -191,20 +191,24 @@ const formRules = ref({
     }
   ]
 })
-watch(
-  () => formState.value.menuType,
-  (n) => {
-    formRules.value['icon'][0].required = n === 1
-  },
-  { deep: true }
-)
+// watch(
+//   () => formState.value.menuType,
+//   (n) => {
+//     formRules.value['icon'][0].required = n === 1
+//   },
+//   { deep: true }
+// )
 const actionType = ref(0)
 /**
- *
- * @param {Number} type 0:新增,1:关联api,2:禁用,3:添加下级菜单,4:编辑
+ * @param {Number} type 0:新增,4:添加下级菜单,5:编辑,
  */
 const title = computed(() => {
-  return actionType.value === 0 ? '新增菜单' : '编辑菜单'
+  const tmp = {
+    0: '新增菜单',
+    4: '新增下级菜单',
+    5: '编辑菜单'
+  }
+  return tmp[actionType.value]
 })
 
 /**
@@ -228,37 +232,50 @@ const onSubmit = useDebounceFn(
         console.log('保存数据', params)
         messageApi.success('保存成功')
         loading.value = false
-        emits('change', params)
+        emits('change', actionType.value, {
+          ...params,
+          key: params?.key || guid(8)
+        })
+        close()
       })
       .catch((error) => {
         console.log('error', error)
         loading.value = false
       })
   },
-  500,
+  100,
   {
     leading: true,
     trailing: false
   }
 )
-const open = (type = 0, params = {}) => {
-  show.value = true
+/**
+ * @param {Number} type 0:新增,4:添加下级菜单,5:编辑,
+ */
+const open = async (type = 0, params = {}) => {
   actionType.value = type
   if (type === 0) {
     formState.value = deepClone(defaultForm)
-    console.log('formState.value', formState.value)
+    show.value = true
     return
   }
+  if (type === 4) {
+    params.status = 1
+  }
   formState.value = {
+    key: params?.key ?? '',
     title: params?.title ?? '', // 菜单名称
     menuType: params?.menuType ?? 1,
     parentId: params?.parentId ?? '', // 上级id
     sort: params?.sort ?? 1, //排序
     path: params?.path ?? '', // 菜单地址
     code: params?.code ?? '', // 权限标志
-    status: Number(params?.status ?? 0) // 是否启用
+    status: Number(params?.status ?? 0), // 是否启用
+    icon: params?.icon ?? ''
   }
-  console.log('formState.value', formState.value)
+  show.value = true
+  // await nextTick()
+  // params?.menuType !== 1 && formRef.value.clearValidate(['icon'])
 }
 const close = () => {
   formState.value = deepClone(defaultForm)

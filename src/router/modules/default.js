@@ -13,7 +13,7 @@ export const defaultRouters = [
     key: 'dashboard',
     meta: {
       key: 'dashboard',
-      // title: 'Dashboard',
+      title: '数据中心',
       requiresAuth: true,
       icon: 'ant-design:dashboard-outlined'
     },
@@ -25,7 +25,7 @@ export const defaultRouters = [
         key: 'dashboard:analysis',
         meta: {
           key: 'dashboard:analysis',
-          // title: '分析页',
+          title: '分析页',
           requiresAuth: true, // 是否授权
           keepAlive: true // 是否缓存
         },
