@@ -74,7 +74,7 @@
         </template> -->
         <template v-if="column.dataIndex === 'icon'">
           <template v-if="record?.icon">
-            <Icon v-if="typeof record.icon === 'string'" :icon="record.icon" />
+            <NIcon v-if="typeof record.icon === 'string'" :icon="record.icon" />
             <component v-else :is="record.icon" />
           </template>
         </template>
@@ -126,10 +126,10 @@ defineOptions({
 import { PlusOutlined } from '@ant-design/icons-vue'
 import { useDebounceFn } from '@vueuse/core'
 import { message } from 'ant-design-vue'
-import Icon from 'components/Icon/index'
+// import Icon from 'components/Icon/index'
 import { menuStatusList, menuTypeList } from 'constants/index'
-import { changeRoleStatus,delMenuById, getMenuList } from 'service/api'
-import { changeTreeData,formatMenuTreeData } from 'utils/menu'
+import { changeRoleStatus, delMenuById, getMenuList } from 'service/api'
+import { changeTreeData, formatMenuTreeData } from 'utils/menu'
 import { reactive, ref, shallowRef } from 'vue'
 
 import EditApi from './EditApi'

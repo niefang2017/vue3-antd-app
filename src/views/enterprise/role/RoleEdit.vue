@@ -27,14 +27,16 @@
       </a-form-item>
 
       <a-form-item label="角色权限" name="authList">
-        <use-tree-form
+        <NUseTreeForm
           ref="menuRef"
+          :locale="locale"
+          :theme="theme"
           :treeData="menuList"
           v-model:value="formState.authList"
           placeholder="请输入权限"
           :height="500"
           @change="validateFields(['authList'])"
-        ></use-tree-form>
+        ></NUseTreeForm>
       </a-form-item>
     </a-form>
     <template #extra>
@@ -50,9 +52,13 @@
 <script setup>
 import { useDebounceFn } from '@vueuse/core'
 import { message } from 'ant-design-vue'
-import UseTreeForm from 'components/UseTreeForm'
+import { storeToRefs } from 'pinia'
+import useStore from 'store'
+// import UseTreeForm from 'components/UseTreeForm'
 import { deepClone } from 'utils/tool'
 import { computed, ref, shallowRef, toRaw } from 'vue'
+const { common } = useStore()
+const { locale, theme } = storeToRefs(common)
 const [messageApi, contextHolder] = message.useMessage()
 defineOptions({ name: 'RoleEdit' })
 defineProps({

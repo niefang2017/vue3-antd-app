@@ -51,14 +51,7 @@ declare module 'vue' {
     ATree: typeof import('ant-design-vue/es')['Tree']
     ATreeSelect: typeof import('ant-design-vue/es')['TreeSelect']
     AUpload: typeof import('ant-design-vue/es')['Upload']
-    Icon: typeof import('./src/components/Icon/index.vue')['default']
-    IconPicker: typeof import('./src/components/Icon/IconPicker.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Submenu: typeof import('./src/components/submenu/index.vue')['default']
-    SvgIcon: typeof import('./src/components/Icon/SvgIcon.vue')['default']
-    UseCityCascader: typeof import('./src/components/UseCityCascader.vue')['default']
-    UseTreeForm: typeof import('./src/components/UseTreeForm.vue')['default']
-    UseUpload: typeof import('./src/components/UseUpload.vue')['default']
   }
 }

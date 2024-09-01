@@ -15,13 +15,13 @@
             ref="formRef"
           >
             <a-form-item name="checkedKeys" class="mb0" :style="{ height: `${menuHeight + 40}px` }">
-              <use-tree-form
+              <NUseTreeForm
                 v-if="item.list.length"
                 v-model:value="item.checkedKeys"
                 :treeData="item.list"
                 :height="menuHeight"
                 @change="validateFields(['checkedKeys'])"
-              ></use-tree-form>
+              ></NUseTreeForm>
               <a-empty v-else mt-100 />
             </a-form-item>
             <div v-if="item.list.length" class="p16 border-t border-t-gray-100 border-t-solid">
@@ -38,7 +38,7 @@
 <script setup>
 import { useDebounceFn, useWindowSize } from '@vueuse/core'
 import { message } from 'ant-design-vue'
-import UseTreeForm from 'components/UseTreeForm'
+// import UseTreeForm from 'components/UseTreeForm'
 import { formatMenuTreeData } from 'utils/menu'
 import { computed, ref, shallowRef, toRaw } from 'vue'
 

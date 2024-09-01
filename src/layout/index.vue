@@ -227,14 +227,14 @@
               <template v-if="!item.children">
                 <a-menu-item :key="item.key">
                   <template #icon v-if="item.icon">
-                    <Icon v-if="typeof item.icon === 'string'" :icon="item.icon" />
+                    <NIcon v-if="typeof item.icon === 'string'" :icon="item.icon" />
                     <component v-else :is="item.icon" />
                   </template>
                   {{ item.title }}
                 </a-menu-item>
               </template>
               <template v-else>
-                <sub-menu :key="item.key" :menu-info="item"></sub-menu>
+                <NSubMenu :key="item.key" :menu-info="item"></NSubMenu>
               </template>
             </template>
           </a-menu>
@@ -285,8 +285,9 @@ import { UserOutlined } from '@ant-design/icons-vue'
 import { theme as anttheme } from 'ant-design-vue'
 import enUS from 'ant-design-vue/es/locale/en_US'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
-import Icon from 'components/Icon/index.vue'
-import SubMenu from 'components/submenu/index.vue'
+// import Icon from 'components/Icon/index.vue'
+// import { NIcon } from 'vue3-antd-icons-picker'
+// import SubMenu from 'components/submenu/index.vue'
 import dayjs from 'dayjs'
 import { storeToRefs } from 'pinia'
 import useStore from 'store'

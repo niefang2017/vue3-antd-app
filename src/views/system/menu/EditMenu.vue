@@ -67,10 +67,12 @@
         </a-col>
         <a-col v-if="formState.menuType !== 3" :span="12">
           <a-form-item label="图标" name="icon">
-            <IconPicker
+            <n-icon-picker
+              :locale="locale"
+              :theme="theme"
               v-model:value="formState.icon"
               @change="validateFields(['icon'])"
-            ></IconPicker>
+            ></n-icon-picker>
           </a-form-item>
         </a-col>
         <a-col :span="12">
@@ -118,10 +120,15 @@
 <script setup>
 import { useDebounceFn } from '@vueuse/core'
 import { message } from 'ant-design-vue'
-import IconPicker from 'components/Icon/IconPicker'
+// import { NIconPicker } from 'vue3-antd-icons-picker'
+// import IconPicker from 'components/Icon/IconPicker'
 import { menuStatusList, menuTypeList } from 'constants/index'
+import { storeToRefs } from 'pinia'
+import useStore from 'store'
 import { deepClone, guid } from 'utils/tool'
 import { computed, ref, toRaw } from 'vue'
+const { common } = useStore()
+const { locale, theme } = storeToRefs(common)
 const [messageApi, contextHolder] = message.useMessage()
 defineOptions({ name: 'EditMenu' })
 defineProps({
