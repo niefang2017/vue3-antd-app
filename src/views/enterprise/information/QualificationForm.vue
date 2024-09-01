@@ -33,10 +33,12 @@
       ></a-select>
     </a-form-item>
     <a-form-item label="经营地址" name="operateList">
-      <use-city-cascader
+      <n-use-city-cascader
+        :locale="locale"
+        :theme="theme"
         v-model:value="formState.operateList"
         @change="validateFields(['operateList'])"
-      ></use-city-cascader>
+      ></n-use-city-cascader>
     </a-form-item>
     <a-form-item label="详细地址" name="operateAddr">
       <a-textarea
@@ -48,12 +50,14 @@
       />
     </a-form-item>
     <a-form-item label="身份证图片" name="certificateUrlList">
-      <use-upload
+      <n-use-upload
+        :locale="locale"
+        :theme="theme"
         multiple
         :max-count="2"
         v-model:value="certificateUrlList"
         @change="(val) => handleChangeImg(val, ['certificateUrlList'])"
-      ></use-upload>
+      ></n-use-upload>
     </a-form-item>
     <a-form-item label="身份证号码" name="certificateNumber">
       <a-input v-model:value="formState.certificateNumber" placeholder="请输入身份证号码" />
@@ -73,12 +77,16 @@
 </template>
 
 <script setup>
-import UseCityCascader from 'components/UseCityCascader'
-import UseUpload from 'components/UseUpload'
+// import UseCityCascader from 'components/UseCityCascader'
+// import UseUpload from 'components/UseUpload'
 // import { message } from 'ant-design-vue'
 import { companyTypeList } from 'constants/index'
 import dayjs from 'dayjs'
+import { storeToRefs } from 'pinia'
+import useStore from 'store'
 import { ref, shallowRef } from 'vue'
+const { common } = useStore()
+const { locale, theme } = storeToRefs(common)
 defineOptions({
   name: 'InformationQualificationForm'
 })
