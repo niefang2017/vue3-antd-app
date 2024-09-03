@@ -2,7 +2,7 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 node >=18 (v18.20.4)
-是大家可以使用我的[插件](https://www.npmjs.com/package/vue3-antd-icons-picker)
+可以使用[插件](https://www.npmjs.com/package/vue3-antd-icons-picker)
 icons选择封装好插件了，
 
 ```sh
