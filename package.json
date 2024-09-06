@@ -73,7 +73,7 @@
     "vite-plugin-vue-devtools": "^7.3.1",
     "vitest": "^1.6.0",
     "vue-i18n": "^9.13.1",
-    "vue3-antd-icons-picker": "^1.0.8"
+    "vue3-antd-icons-picker": "^1.0.9"
   },
   "husky": {
     "hooks": {

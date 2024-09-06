@@ -48,7 +48,7 @@ specifiers:
   vue: ^3.4.29
   vue-i18n: ^9.13.1
   vue-router: ^4.3.3
-  vue3-antd-icons-picker: ^1.0.8
+  vue3-antd-icons-picker: ^1.0.9
 
 dependencies:
   '@ant-design/icons-vue': 7.0.1_vue@3.4.34
@@ -100,7 +100,7 @@ devDependencies:
   vite-plugin-vue-devtools: 7.3.7_vite@5.3.5+vue@3.4.34
   vitest: 1.6.0_jsdom@24.1.1+less@4.2.0
   vue-i18n: 9.13.1_vue@3.4.34
-  vue3-antd-icons-picker: 1.0.8_typescript@5.5.4
+  vue3-antd-icons-picker: 1.0.9_typescript@5.5.4
 
 packages:
 
@@ -7023,8 +7023,8 @@ packages:
       '@vue/shared': 3.4.34
       typescript: 5.5.4
 
-  /vue3-antd-icons-picker/1.0.8_typescript@5.5.4:
-    resolution: {integrity: sha512-vun9VneU8ZCLI+Ty+zJ5neA4KhoXpj3+ebLBJPGwi6boDWoiRSKiiqxFJTTpCMXc/shQR7D+ijIzpndltJ8x0g==}
+  /vue3-antd-icons-picker/1.0.9_typescript@5.5.4:
+    resolution: {integrity: sha512-jv/c8LNy/fhGq0pYJR0a/kg4CtibtXTRzE61aIgVBfDjPrEjqJh5gNsefGoeRs1+U9uo3BJOJh15IZdqBUVpBg==}
     dependencies:
       '@ant-design/icons-vue': 7.0.1_vue@3.4.34
       '@iconify-json/ant-design': 1.1.16

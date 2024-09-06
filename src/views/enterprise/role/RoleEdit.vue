@@ -31,6 +31,7 @@
           ref="menuRef"
           :locale="locale"
           :theme="theme"
+          :colorPrimary="theme === 'dark' ? '#5468ff' : '#646cff'"
           :treeData="menuList"
           v-model:value="formState.authList"
           placeholder="请输入权限"

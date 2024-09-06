@@ -70,6 +70,7 @@
             <n-icon-picker
               :locale="locale"
               :theme="theme"
+              :colorPrimary="theme === 'dark' ? '#5468ff' : '#646cff'"
               v-model:value="formState.icon"
               @change="validateFields(['icon'])"
             ></n-icon-picker>

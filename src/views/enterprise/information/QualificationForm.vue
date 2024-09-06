@@ -36,6 +36,7 @@
       <n-use-city-cascader
         :locale="locale"
         :theme="theme"
+        :colorPrimary="theme === 'dark' ? '#5468ff' : '#646cff'"
         v-model:value="formState.operateList"
         @change="validateFields(['operateList'])"
       ></n-use-city-cascader>
@@ -53,6 +54,7 @@
       <n-use-upload
         :locale="locale"
         :theme="theme"
+        :colorPrimary="theme === 'dark' ? '#5468ff' : '#646cff'"
         multiple
         :max-count="2"
         v-model:value="certificateUrlList"
